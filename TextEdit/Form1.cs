@@ -17,6 +17,7 @@ namespace TextEdit
         public Form1()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(Form_KeyDown);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,9 +36,20 @@ namespace TextEdit
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var tabs = new Tabs();
+            saveFile();
+        }
+
+        void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.S)
+            {
+                saveFile();
+            }
+        }
+
+        void saveFile()
+        {
             var files = new Files();
-            //RichTextBox rtb = Application.OpenForms["Form1"].Controls[tabControl1.SelectedTab.Text] as RichTextBox;
             RichTextBox rtb = (RichTextBox)tabControl1.SelectedTab.Tag;
             files.saveFile(tabControl1.SelectedTab.Text, rtb.Lines);
         }

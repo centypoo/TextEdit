@@ -14,8 +14,10 @@ namespace TextEdit
 {
     class Tabs
     {
-        public int amountOfForms = 0;
+        public int amountOfTabs = 0;
         public TabPage[] tabsOpen = new TabPage[255];
+        //public RichTextBox[] textBoxes = new RichTextBox[255];
+
         public void openTab()
         {
             Form1 frm1 = new Form1();
@@ -26,20 +28,21 @@ namespace TextEdit
             if (userClickedOK == DialogResult.OK)
             {
                 RichTextBox tmp = new RichTextBox();
+                tmp.Name = "test";
                 tmp.Lines = File.ReadAllLines(fd.FileName, Encoding.Default);
                 tmp.Dock = DockStyle.Fill;
                 tmp.BackColor = SystemColors.ControlDarkDark;
                 tmp.ForeColor = Color.White;
                 tmp.WordWrap = false;
                 tmp.Font = new Font("Arial", 10);
+                //textBoxes[amountOfTabs] = tmp;
 
                 TabPage tb = new TabPage(fd.FileName);
-                tabsOpen[amountOfForms] = tb;
+                //tb.Tag = textBoxes[amountOfTabs];
+                tb.Tag = tmp;
+                tabsOpen[amountOfTabs] = tb;
 
-                //frm1.tabControl1.TabPages.Add(this.tabsOpen[amountOfForms]);
-                tabsOpen[amountOfForms].Controls.Add(tmp);
-
-                //frm1.tabControl1.SelectedTab = this.tabsOpen[amountOfForms];
+                tabsOpen[amountOfTabs].Controls.Add(tmp);
             }
         }
     }

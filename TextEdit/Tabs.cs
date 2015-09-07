@@ -21,6 +21,7 @@ namespace TextEdit
         public void openTab()
         {
             Form1 frm1 = new Form1();
+            
 
             OpenFileDialog fd = new OpenFileDialog();
             DialogResult userClickedOK = fd.ShowDialog();
